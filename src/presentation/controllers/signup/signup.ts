@@ -1,3 +1,4 @@
+import { ok, badRequest } from './../../helpers/http-helper'
 import { ServerError, InvalidParamError, MissingParamError } from '../../errors'
 import { HttpRequest, HttpResponse, EmailValidator, AddAccount } from './signup-protocols'
 import Controller from '../../protocols/controller'
@@ -29,32 +30,17 @@ export class SignUpController implements Controller {
       }).filter(f => f !== undefined)
 
       if (errors.length) {
-        return {
-          statusCode: 400,
-          body: {
-            error: errors
-          }
-        }
+        return badRequest(errors)
       }
 
       const passwordEqual = password === passwordConfirm
       if (!passwordEqual) {
-        return {
-          statusCode: 400,
-          body: {
-            error: new InvalidParamError('password')
-          }
-        }
+        return badRequest(new InvalidParamError('password'))
       }
 
       const emailIsValid = this.emailValidator.isValid(email)
       if (!emailIsValid) {
-        return {
-          statusCode: 400,
-          body: {
-            error: new InvalidParamError('Email')
-          }
-        }
+        return badRequest(new InvalidParamError('Email'))
       }
 
       const account = this.addAccount.add({
@@ -63,10 +49,7 @@ export class SignUpController implements Controller {
         password
       })
 
-      return {
-        statusCode: 200,
-        body: account
-      }
+      return ok(account)
     } catch (err) {
       return {
         statusCode: 500,
