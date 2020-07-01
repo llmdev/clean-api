@@ -1,7 +1,6 @@
-import { AddAccount } from './../../domain/usecases/add-account'
-import { ServerError, InvalidParamError, MissingParamError } from './../errors'
-import { HttpRequest, HttpResponse, EmailValidator } from '../protocols'
-import Controller from '../protocols/controller'
+import { ServerError, InvalidParamError, MissingParamError } from '../../errors'
+import { HttpRequest, HttpResponse, EmailValidator, AddAccount } from './signup-protocols'
+import Controller from '../../protocols/controller'
 
 interface HttpRequestSignupController {
   name: string
