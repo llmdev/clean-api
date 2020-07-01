@@ -3,9 +3,9 @@ import { HttpRequest, HttpResponse, EmailValidator } from '../protocols'
 import Controller from '../protocols/controller'
 
 interface HttpRequestSignupController {
-  name?: string
-  email?: string
-  password?: string
+  name: string
+  email: string
+  password: string
   passwordConfirm: string
 }
 
