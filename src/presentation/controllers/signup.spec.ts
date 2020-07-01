@@ -111,13 +111,10 @@ describe('SignUp controller', () => {
   })
 
   test('Should return 500 server error if email validator throws', () => {
-    class EmailValidatorThrowStub implements EmailValidator {
-      isValid (email: string): boolean {
-        throw new Error()
-      }
-    }
-    const emailValidatorStub = new EmailValidatorThrowStub()
-    const sut = new SignUpController(emailValidatorStub)
+    const { sut, emailValidatorStub } = makeSut()
+    jest.spyOn(emailValidatorStub, 'isValid').mockImplementationOnce(() => {
+      throw new ServerError()
+    })
     const httpRequest = {
       body: {
         name: 'any_name',
