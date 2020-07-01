@@ -1,8 +1,5 @@
-import { ServerError } from './../errors/server-error'
-import { InvalidParamError } from './../errors/invalid-param-error'
-import { EmailValidator } from './../protocols/emailValidator'
-import { HttpRequest, HttpResponse } from '../protocols/http'
-import { MissingParamError } from '../errors/missing-param-error'
+import { ServerError, InvalidParamError, MissingParamError } from './../errors'
+import { HttpRequest, HttpResponse, EmailValidator } from '../protocols'
 import Controller from '../protocols/controller'
 
 interface HttpRequestSignupController {
