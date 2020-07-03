@@ -30,5 +30,9 @@
     "lint-staged": "^10.2.9",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "@types/validator": "^13.1.0",
+    "validator": "^13.1.1"
   }
 }
